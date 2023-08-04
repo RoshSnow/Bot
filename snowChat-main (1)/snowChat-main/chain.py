@@ -64,8 +64,8 @@ LLAMA_PROMPT = PromptTemplate(
     template=LLAMA_TEMPLATE, input_variables=["question", "context"]
 )
 
-supabase_url = st.secrets["SUPABASE_URL"]
-supabase_key = st.secrets["SUPABASE_SERVICE_KEY"]
+supabase_url = "https://htifawancstvxvmxsquo.supabase.co"
+supabase_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh0aWZhd2FuY3N0dnh2bXhzcXVvIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTEwNDU3MTEsImV4cCI6MjAwNjYyMTcxMX0.VMD1OL7UF0fKpXJCr5771O2stQxUiaBSTTBFInBqhE4"
 supabase: Client = create_client(supabase_url, supabase_key)
 
 LLAMA = "a16z-infra/llama13b-v2-chat:df7690f1994d94e96ad9d568eac121aecf50684a0b0963b25a41cc40061269e5"
@@ -105,7 +105,7 @@ def get_chain_gpt(vectorstore):
     """
     q_llm = OpenAI(
         temperature=0.1,
-        openai_api_key=st.secrets["OPENAI_API_KEY"],
+        openai_api_key="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",
         model_name="gpt-3.5-turbo-16k",
         max_tokens=500,
     )
@@ -113,7 +113,7 @@ def get_chain_gpt(vectorstore):
     llm = ChatOpenAI(
         model_name="gpt-3.5-turbo",
         temperature=0.5,
-        openai_api_key=st.secrets["OPENAI_API_KEY"],
+        openai_api_key="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",
         max_tokens=500,
         # streaming=True,
     )
@@ -139,7 +139,7 @@ def load_chain(model_name="GPT-3.5"):
     """
 
     embeddings = OpenAIEmbeddings(
-        openai_api_key=st.secrets["OPENAI_API_KEY"], model="text-embedding-ada-002"
+        openai_api_key="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", model="text-embedding-ada-002"
     )
     vectorstore = SupabaseVectorStore(
         embedding=embeddings, client=supabase, table_name="documents"
